@@ -20,7 +20,7 @@ def write_to_output_file(output_file, colored_array):
             file.write("[" + ", ".join(quoted_row) + "],\n")
 
 
-def is_coords_valid(
+def are_coords_valid(
     array: list[list],
     visited: list[tuple],
     color: str,
@@ -29,7 +29,7 @@ def is_coords_valid(
 ):
     if (x, y) not in visited:
         if 0 <= x < len(array) and 0 <= y < len(array[x]):
-            return array[x][y] is color
+            return array[x][y] == color
     return False
 
 
@@ -50,7 +50,7 @@ def flood_fill(size: tuple[int, int], start: tuple[int, int], color: str, colors
         for index in range(4):
             x_neighbour = direction_vector_row[index] + row_index
             y_neighbour = direction_vector_column[index] + column_index
-            if is_coords_valid(
+            if are_coords_valid(
                 colors, visited, current_color, x_neighbour, y_neighbour
             ):
                 colors[x_neighbour][y_neighbour] = color
